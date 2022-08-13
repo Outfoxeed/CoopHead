@@ -882,18 +882,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1288535820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a7f4f3e2394957a7f78065d35c2b2e, type: 3}
+  m_Script: {fileID: 11500000, guid: ac53de51b41f48ad995cffde0d036f19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyOneEnabled: 0
-  nextGroupToDisable: 0
+  enableOnlyOne: 0
+  nextGroupToToggle: 0
   groups:
-    gameObjectArrays:
-    - objects: []
-    - objects: []
-    - objects: []
+    arrays:
+    - values:
+      - {fileID: 316944582}
+    - values:
+      - {fileID: 1450777389}
+    - values:
+      - {fileID: 700242376}
   toggleCooldown:
-    duration: 1
+    duration: 2
 --- !u!1 &1450777389
 GameObject:
   m_ObjectHideFlags: 0
