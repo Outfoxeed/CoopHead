@@ -6,23 +6,12 @@ using UnityEngine;
 
 public class Player : SingletonBase<Player>
 {
-    private int room;
-    public int CurrentRoomIndex => room;
+    private int currentRoomIndex;
+    public int CurrentRoomIndex => currentRoomIndex;
+    public System.Action<int> onRoomChanged;
 
     private Checkpoint currentCheckpoint;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         switch (other.tag)
@@ -33,13 +22,24 @@ public class Player : SingletonBase<Player>
             case "Checkpoint":
                 OnCheckpointTouched(other.gameObject);
                 break;
+            case "Room":
+                OnRoomTouched(other.gameObject);
+                break;
         }
+    }
+
+    private void OnRoomTouched(GameObject roomTouched)
+    {
+        var newRoomIndex = RoomsManager.Instance.GetRoomIndex(roomTouched);
+        if (currentRoomIndex == newRoomIndex)
+            return;
+        currentRoomIndex = newRoomIndex;
+        onRoomChanged?.Invoke(currentRoomIndex);
     }
 
     private void Die()
     {
-        // Temp
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        transform.position = currentCheckpoint.transform.position;
     }
 
     private void OnCheckpointTouched(GameObject checkpointGo)
@@ -49,7 +49,11 @@ public class Player : SingletonBase<Player>
 
         if (currentCheckpoint == checkpoint)
             return;
-        
+
+        // Don't take new checkpoint if it is before the current one
+        if (!RoomsManager.Instance.IsCheckpointSuperior(checkpoint, currentCheckpoint))
+            return;
+
         SetCurrentCheckpoint(checkpoint);
     }
     private void SetCurrentCheckpoint(Checkpoint checkpoint)

@@ -1,4 +1,5 @@
 ﻿using System;
+using CoopHead;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,24 +10,26 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         player = Player.Instance;
+        player.onRoomChanged += LerpToRoom;
+
+        currentRoomIndex = -1;
+        LerpToRoom(0);
     }
 
-    private void Update()
+    private void LerpToRoom(int roomIndex)
     {
-        if (currentRoomIndex != player.CurrentRoomIndex)
+        if (roomIndex == currentRoomIndex)
+            return;
+        currentRoomIndex = roomIndex;
+
+        var roomsManager = RoomsManager.Instance;
+        if (!roomsManager)
         {
-            // LerpToRoom(player.CurrentRoomIndex);        
-        }   
-    }
-
-    private void LateUpdate()
-    {
-                
-    }
-
-    //TODO: List of rooms, player knowing in which room he is. Camera TPing to player current rrom
-    private void LerpToRoom()
-    {
+            Debug.Log("Rooms Manager is null");
+            return;
+        }
         
+        var room = roomsManager.GetRoom(roomIndex);
+        transform.position = new Vector3(room.x, room.y, transform.position.z);
     }
 }

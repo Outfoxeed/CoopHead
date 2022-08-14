@@ -107,7 +107,7 @@ namespace CoopHead
         private void JumpBoost() => JumpBase(jumpBoostForce);
         private void JumpBase(float jumpForce) // Not meant to be used
         {
-            Debug.Log("Jump");
+            // Debug.Log("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             
             jumpPressedRemember.Reset();
