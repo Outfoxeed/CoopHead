@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.av.smart-inspector": {
+      "version": "file:C:/Users/letou/Documents/Unity Packages/Smart-Inspector-main-14-08-22",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "7.0.6",
       "depth": 1,

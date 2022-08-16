@@ -165,6 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363b90a890ed3f24689501fbb69b9245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lowBoostPrefab: {fileID: 3572919767972900485, guid: c7e7f0e2a5cca1144be1199c7e7c3a93, type: 3}
+  lowBoostDestroyTime: 1.5
+  lowBoostPlaceCooldown:
+    duration: 0.2
+  strongBoostPrefab: {fileID: 3225445349225577360, guid: 3ccb1842ce8a29e43b3bb4ab51891ffb, type: 3}
+  strongBoostActivationRange: 1.5
+  strongBoostActivationDuration: 2
+  strongBoostPlaceCooldown:
+    duration: 0.2
+  strongBoostUseCooldown:
+    duration: 3
 --- !u!114 &926578898904679201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +195,8 @@ MonoBehaviour:
     duration: 0.1
   groundedRemember:
     duration: 0.2
+  superBoostForce: 10
+  superBoostAirControl: 2
   groundCheck: {fileID: 926578897440914346}
   groundCheckDistance: 0.2
 --- !u!50 &926578898904679194

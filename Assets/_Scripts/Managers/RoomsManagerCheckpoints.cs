@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using OutFoxeed.MonoBehaviourBase;
 
 namespace CoopHead
 {

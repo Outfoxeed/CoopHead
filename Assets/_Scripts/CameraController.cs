@@ -1,35 +1,36 @@
-﻿using System;
-using CoopHead;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace CoopHead
 {
-    private Player player;
-    private int currentRoomIndex;
-
-    private void Start()
+    public class CameraController : MonoBehaviour
     {
-        player = Player.Instance;
-        player.onRoomChanged += LerpToRoom;
+        private Player player;
+        private int currentRoomIndex;
 
-        currentRoomIndex = -1;
-        LerpToRoom(0);
-    }
-
-    private void LerpToRoom(int roomIndex)
-    {
-        if (roomIndex == currentRoomIndex)
-            return;
-        currentRoomIndex = roomIndex;
-
-        var roomsManager = RoomsManager.Instance;
-        if (!roomsManager)
+        private void Start()
         {
-            Debug.Log("Rooms Manager is null");
-            return;
+            player = Player.instance;
+            player.onRoomChanged += LerpToRoom;
+
+            currentRoomIndex = -1;
+            LerpToRoom(0);
         }
+
+        private void LerpToRoom(int roomIndex)
+        {
+            if (roomIndex == currentRoomIndex)
+                return;
+            currentRoomIndex = roomIndex;
+
+            var roomsManager = RoomsManager.instance;
+            if (!roomsManager)
+            {
+                Debug.Log("Rooms Manager is null");
+                return;
+            }
         
-        var room = roomsManager.GetRoom(roomIndex);
-        transform.position = new Vector3(room.x, room.y, transform.position.z);
+            var room = roomsManager.GetRoom(roomIndex);
+            transform.position = new Vector3(room.x, room.y, transform.position.z);
+        }
     }
 }

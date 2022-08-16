@@ -1,5 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
+﻿using OutFoxeed.UsefulStructs;
 using UnityEngine;
 
 namespace CoopHead

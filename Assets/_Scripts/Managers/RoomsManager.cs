@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Collections.Generic;
+using OutFoxeed.MonoBehaviourBase;
 using UnityEngine;
 
 namespace CoopHead
@@ -21,6 +20,9 @@ namespace CoopHead
                     newRooms.Add(new Rect((Vector2) child.transform.position + childCollider.offset,
                         childCollider.size));
                     child.name = $"Room {newRooms.Count - 1}";
+                    
+                    // In case forgotten during implementation
+                    if (!childCollider.isTrigger) childCollider.isTrigger = true;
                 }
                 else
                 {
