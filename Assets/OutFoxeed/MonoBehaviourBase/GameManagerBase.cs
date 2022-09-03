@@ -5,8 +5,8 @@ namespace OutFoxeed.MonoBehaviourBase
     public class GameManagerBase<T> : SingletonBase<T> where T : MonoBehaviour
     {
         // Have a cleaner reference to Camera.main
-        private static Camera mainCam;
-        public static Camera MainCam => mainCam;
+        private Camera mainCam;
+        public Camera MainCam => mainCam;
 
         // Pause system
         private static bool paused;

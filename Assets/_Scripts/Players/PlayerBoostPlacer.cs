@@ -33,8 +33,9 @@ namespace CoopHead
 
         private void Start()
         {
-            rewiredPlayer = GameManager.instance.RewiredPlayer;
-            camera = GameManager.MainCam;
+            var gameManager = GameManager.instance;
+            rewiredPlayer = gameManager.RewiredPlayer;
+            camera = gameManager.MainCam;
         }
 
         private void Update()

@@ -58,31 +58,34 @@ namespace OutFoxeed.CustomHierarchy.Editor
             // Starts with rule
             foreach (var rule in rules.startsWithHierarchyRules)
             {
-                if (obj.name.StartsWith(rule.value))
-                {
-                    string name = obj.name.Remove(0, rule.value.Length);
-                    DrawWithSkin(obj, rule.skin, name, selectionRect);
-                }
+                if (!obj.name.StartsWith(rule.value))
+                    continue;
+
+                string name = obj.name.Remove(0, rule.value.Length);
+                DrawWithSkin(obj, rule.skin, name, selectionRect);
+                return;
             }
 
             // Ends with rule
             foreach (var rule in rules.endsWithHierarchyRules)
             {
-                if (obj.name.EndsWith(rule.value))
-                {
-                    string name = obj.name;
-                    name = name.Remove(name.Length - rule.value.Length, rule.value.Length);
-                    DrawWithSkin(obj, rule.skin, name, selectionRect);
-                }
+                if (!obj.name.EndsWith(rule.value))
+                    continue;
+                
+                string name = obj.name;
+                name = name.Remove(name.Length - rule.value.Length, rule.value.Length);
+                DrawWithSkin(obj, rule.skin, name, selectionRect);
+                return;
             }
 
             // Contains rule
             foreach (var rule in rules.containsHierarchyRules)
             {
-                if (obj.name.Contains(rule.value))
-                {
-                    DrawWithSkin(obj, rule.skin, obj.name, selectionRect, true);
-                }
+                if (!obj.name.Contains(rule.value)) 
+                    continue;
+                
+                DrawWithSkin(obj, rule.skin, obj.name, selectionRect, true);
+                return;
             }
 
             // Components rule
@@ -108,10 +111,9 @@ namespace OutFoxeed.CustomHierarchy.Editor
             // Tag rule
             foreach (var rule in rules.tagHierarchyRules)
             {
-                if (gameObject.CompareTag(rule.value))
-                {
-                    DrawWithSkin(obj, rule.skin, obj.name, selectionRect, true);
-                }
+                if (!gameObject.CompareTag(rule.value))
+                    continue;
+                DrawWithSkin(obj, rule.skin, obj.name, selectionRect, true);
             }
         }
 

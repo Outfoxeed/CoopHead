@@ -13,17 +13,6 @@ MonoBehaviour:
   m_Name: Custom Hierarchy Parameters
   m_EditorClassIdentifier: 
   startsWithHierarchyRules:
-  - value: //
-    skin:
-      normal:
-        textColor: {r: 1, g: 1, b: 1, a: 1}
-        bgColor: {r: 0.11405134, g: 0, b: 1, a: 0.57254905}
-      selected:
-        textColor: {r: 1, g: 1, b: 1, a: 1}
-        bgColor: {r: 0.11372549, g: 0, b: 1, a: 0.57254905}
-      alignment: 4
-      upperCase: 0
-      fontStyle: 1
   - value: ///
     skin:
       normal:
@@ -32,6 +21,17 @@ MonoBehaviour:
       selected:
         textColor: {r: 1, g: 1, b: 1, a: 1}
         bgColor: {r: 1, g: 0.11372549, b: 0, a: 0.7294118}
+      alignment: 4
+      upperCase: 0
+      fontStyle: 1
+  - value: //
+    skin:
+      normal:
+        textColor: {r: 1, g: 1, b: 1, a: 1}
+        bgColor: {r: 0.11405134, g: 0, b: 1, a: 0.57254905}
+      selected:
+        textColor: {r: 1, g: 1, b: 1, a: 1}
+        bgColor: {r: 0.11372549, g: 0, b: 1, a: 0.57254905}
       alignment: 4
       upperCase: 0
       fontStyle: 1

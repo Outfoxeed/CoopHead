@@ -198,7 +198,7 @@ MonoBehaviour:
   superBoostForce: 10
   superBoostAirControl: 2
   groundCheck: {fileID: 926578897440914346}
-  groundCheckDistance: 0.2
+  groundCheckDistance: 0.1
 --- !u!50 &926578898904679194
 Rigidbody2D:
   serializedVersion: 4
