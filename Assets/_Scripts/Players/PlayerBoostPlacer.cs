@@ -119,7 +119,7 @@ namespace CoopHead
             }
             
             playerController.BlockMovement(false);
-            playerController.SuperBoost(launchDir);
+            playerController.StartSuperBoost(launchDir);
             
             strongBoostInstance.gameObject.SetActive(false);
             strongBoostCoroutine = null;

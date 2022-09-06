@@ -11,6 +11,7 @@ namespace CoopHead
         private Rigidbody2D rb;
         private float startGravityScale;
         private bool blocked;
+        [SerializeField] private bool debug;
 
         [Header("Movements")] [SerializeField] private float moveSpeed;
         private float horizontalInput;
@@ -95,7 +96,7 @@ namespace CoopHead
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            superBoost = false;
+            StopSuperBoost();
         }
 
         private void TryJump()
@@ -103,6 +104,8 @@ namespace CoopHead
             if (!jumpPressedRemember.IsRemembering())
                 return;
 
+            if(debug) Debug.Log("Jump");
+            
             // Normal jump
             if (groundedRemember.IsRemembering())
             {
@@ -117,18 +120,19 @@ namespace CoopHead
                 if (!boost)
                     return;
 
-                JumpBoost();
+                JumpBoost(superBoost);
                 RemoveCloseBoost(boost);
                 Destroy(boost.gameObject);
                 return;
             }
         }
 
-        public void SuperBoost(Vector2 dir)
+        public void StartSuperBoost(Vector2 dir)
         {
             rb.velocity = dir.normalized * superBoostForce;
             superBoost = true;
         }
+        private void StopSuperBoost() => superBoost = false;
 
         public void BlockMovement(bool block)
         {
@@ -138,12 +142,14 @@ namespace CoopHead
         }
 
         private void JumpNormal() => JumpBase(jumpNormalForce);
-        private void JumpBoost() => JumpBase(jumpBoostForce);
+        private void JumpBoost(bool resetXVelocity) => JumpBase(jumpBoostForce, resetXVelocity);
 
-        private void JumpBase(float jumpForce) // Not meant to be used
+        private void JumpBase(float jumpForce, bool resetXVelocity = false) // Not meant to be used
         {
-            // Debug.Log("Jump");
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            // In case
+            StopSuperBoost();
+            
+            rb.velocity = new Vector2(resetXVelocity ? Mathf.Sign(rb.velocity.x) * moveSpeed : rb.velocity.x, jumpForce);
 
             jumpPressedRemember.Reset();
             groundedRemember.Reset();

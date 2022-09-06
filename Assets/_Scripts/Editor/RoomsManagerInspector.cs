@@ -18,6 +18,7 @@ namespace CoopHead.Editor
             if (GUILayout.Button("Update rooms"))
             {
                 roomsManager.UpdateRooms();
+                EditorUtility.SetDirty(roomsManager);
             }
             
             GUILayout.Space(10);
