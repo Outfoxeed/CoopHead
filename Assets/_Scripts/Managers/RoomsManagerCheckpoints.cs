@@ -1,4 +1,5 @@
-﻿using OutFoxeed.MonoBehaviourBase;
+﻿using System.Collections.Generic;
+using OutFoxeed.MonoBehaviourBase;
 
 namespace CoopHead
 {
@@ -16,6 +17,17 @@ namespace CoopHead
             return -1;
         }
 
+        private void SetupCheckpoints()
+        {
+            List<Checkpoint> newCheckpoints = new List<Checkpoint>();
+            for (int i = 0; i < rooms.Length; i++)
+            {
+                newCheckpoints.AddRange(rooms[i].Checkpoints);
+            }
+
+            checkpoints = newCheckpoints.ToArray();
+        }
+        
         /// <summary>
         /// Return true if checkpoint a is after checkpoint b
         /// </summary>

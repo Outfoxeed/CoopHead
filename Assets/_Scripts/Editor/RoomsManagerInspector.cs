@@ -15,18 +15,14 @@ namespace CoopHead.Editor
             serializedObject.Update();
             
             EditorGUILayout.PropertyField(serializedObject.FindProperty("rooms"));
-            if (GUILayout.Button("Update rooms"))
-            {
-                roomsManager.UpdateRooms();
-                EditorUtility.SetDirty(roomsManager);
-            }
+            GUILayout.Space(2);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("checkpoints"));
             
             GUILayout.Space(10);
-            
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("checkpoints"));
-            if (GUILayout.Button("Get all checkpoints"))
+            if (GUILayout.Button("Auto setup"))
             {
-                roomsManager.checkpoints = GameObject.FindObjectsOfType<Checkpoint>();
+                roomsManager.InspectorSetup();
+                EditorUtility.SetDirty(roomsManager);
             }
 
             serializedObject.ApplyModifiedProperties();

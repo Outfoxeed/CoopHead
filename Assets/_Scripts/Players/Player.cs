@@ -7,19 +7,19 @@ namespace CoopHead
     public partial class Player : SingletonBase<Player>
     {
         private PlayerController playerController;
-        
+
         private int currentRoomIndex;
         public int CurrentRoomIndex => currentRoomIndex;
         public System.Action<int> onRoomChanged;
 
         private Checkpoint currentCheckpoint;
-    
+
         protected override void Awake()
         {
             base.Awake();
             playerController = GetComponent<PlayerController>();
         }
-        
+
         private void OnTriggerStay2D(Collider2D other)
         {
             switch (other.tag)
@@ -31,12 +31,13 @@ namespace CoopHead
                     OnCheckpointTouched(other.gameObject);
                     break;
                 case "Room":
-                    OnRoomTouched(other.gameObject);
+                    if (other.gameObject.TryGetComponent(out Room room))
+                        OnRoomTouched(room);
                     break;
             }
         }
 
-        private void OnRoomTouched(GameObject roomTouched)
+        private void OnRoomTouched(Room roomTouched)
         {
             var newRoomIndex = RoomsManager.instance.GetRoomIndex(roomTouched);
             if (currentRoomIndex == newRoomIndex)
@@ -48,7 +49,7 @@ namespace CoopHead
         private void Die()
         {
             playerController.OnDeath();
-            
+
             // Gain all cooldowns
             lowBoostPlaceCooldown.SetReady();
             strongBoostPlaceCooldown.SetReady();
@@ -79,6 +80,7 @@ namespace CoopHead
 
             SetCurrentCheckpoint(checkpoint);
         }
+
         private void SetCurrentCheckpoint(Checkpoint checkpoint)
         {
             currentCheckpoint = checkpoint;

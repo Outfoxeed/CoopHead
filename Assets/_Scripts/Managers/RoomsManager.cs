@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OutFoxeed.MonoBehaviourBase;
 using UnityEngine;
 
@@ -6,36 +7,40 @@ namespace CoopHead
 {
     public partial class RoomsManager : SingletonBase<RoomsManager>
     {
-        public Rect[] rooms;
-        public Rect GetRoom(int index) => rooms[index];
+        public Room[] rooms;
+        public Room GetRoom(int index) => rooms[index];
 
-        public void UpdateRooms()
+        public void InspectorSetup()
         {
-            List<Rect> newRooms = new List<Rect>();
-            for (int i = 0; i < transform.childCount; i++)
+            SetupRooms();
+            SetupCheckpoints();
+        }
+
+        private void SetupRooms()
+        {
+            rooms = FindObjectsOfType<Room>(true);
+            for (int i = 0; i < rooms.Length; i++)
             {
-                var child = transform.GetChild(i).gameObject;
-                if (child.TryGetComponent(out BoxCollider2D childCollider))
+                for (int j = 0; j < rooms.Length - 1; j++)
                 {
-                    newRooms.Add(new Rect((Vector2) child.transform.position + childCollider.offset,
-                        childCollider.size));
-                    child.name = $"Room {newRooms.Count - 1}";
-                    
-                    // In case forgotten during implementation
-                    if (!childCollider.isTrigger) childCollider.isTrigger = true;
-                }
-                else
-                {
-                    Destroy(child);
+                    bool finished = true;
+                    if (String.CompareOrdinal(rooms[j].name, rooms[j + 1].name) >= 0)
+                    {
+                        (rooms[j], rooms[j + 1]) = (rooms[j + 1], rooms[j]);
+                        finished = false;
+                    }
+
+                    if (finished)
+                        break;
                 }
             }
-            rooms = newRooms.ToArray();
         }
-        public int GetRoomIndex(GameObject room)
+
+        public int GetRoomIndex(Room room)
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < rooms.Length; i++)
             {
-                if (transform.GetChild(i).gameObject == room)
+                if (room == rooms[i])
                     return i;
             }
             return -1;

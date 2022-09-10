@@ -37,9 +37,11 @@ namespace CoopHead
             }
         
             var room = roomsManager.GetRoom(roomIndex);
-            transform.position = new Vector3(room.x, room.y, transform.position.z);
-            
-            UpdateOrthographicSize(room);
+            if (!room)
+                return;
+            Rect roomRect = room.Rect;
+            transform.position = new Vector3(roomRect.x, roomRect.y, transform.position.z);
+            UpdateOrthographicSize(roomRect);
         }
 
         private void UpdateOrthographicSize(Rect roomRect)
@@ -47,7 +49,7 @@ namespace CoopHead
             //Scale camera aspect ratio to zoom the entire level
             Resolution currentResolution = Screen.currentResolution;
             float heightByWidth = currentResolution.height / (float) currentResolution.width;
-            if (roomRect.height >= roomRect.width) cam.orthographicSize = roomRect.height * 0.5f;
+            if (roomRect.height * 1.5f >= roomRect.width ) cam.orthographicSize = roomRect.height * 0.5f;
             else cam.orthographicSize = roomRect.width * heightByWidth * 0.5f;
         }
     }
