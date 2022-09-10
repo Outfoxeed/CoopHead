@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6665219708014069535}
   - component: {fileID: 6665219708014069534}
   - component: {fileID: 6824894041370609296}
+  - component: {fileID: 6665219708563486467}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -61,16 +62,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - serializedVersion: 2
-    x: -4.3968215
-    y: -0.120565325
-    width: 6.5402775
-    height: 8.819254
-  - serializedVersion: 2
-    x: 3.1431785
-    y: -0.120565325
-    width: 6.5402775
-    height: 8.819254
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   checkpoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &6665219708563486467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665219708014069536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a482ecae43b8426c9906b8bf45928dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopped: 0

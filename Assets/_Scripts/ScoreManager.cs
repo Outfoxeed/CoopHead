@@ -5,6 +5,8 @@ namespace CoopHead
 {
     public class ScoreManager : SingletonBase<ScoreManager>
     {
+        private GameManager gm;
+        
         private float score;
         public float Score
         {
@@ -17,16 +19,17 @@ namespace CoopHead
         }
         public System.Action<float> OnScoreUpdated;
 
-        public bool stopped;
+        private bool scoreSaved;
 
         private void Start()
         {
+            gm = GameManager.instance;
             Score = 0;
         }
         
         private void Update()
         {
-            if (GameManager.IsPaused || stopped)
+            if (gm.CurrentGameState != GameManager.GameState.Game)
                 return;
 
             Score += Time.deltaTime;
@@ -34,6 +37,10 @@ namespace CoopHead
 
         public void SaveScore()
         {
+            if (scoreSaved)
+                return;
+            scoreSaved = true;
+            
             float highscore = PlayerPrefs.GetFloat("Highscore", 0);
             if (highscore < score) PlayerPrefs.SetFloat("Highscore", score);
         }

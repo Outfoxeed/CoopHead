@@ -34,6 +34,9 @@ namespace CoopHead
                     if (other.gameObject.TryGetComponent(out Room room))
                         OnRoomTouched(room);
                     break;
+                case "End":
+                    GameManager.instance.CurrentGameState = GameManager.GameState.End;
+                    break;
             }
         }
 

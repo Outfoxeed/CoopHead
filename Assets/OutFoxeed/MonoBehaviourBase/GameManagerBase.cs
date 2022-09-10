@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Mono.Cecil.Cil;
+using UnityEngine;
 
 namespace OutFoxeed.MonoBehaviourBase
 {
@@ -8,17 +9,26 @@ namespace OutFoxeed.MonoBehaviourBase
         private Camera mainCam;
         public Camera MainCam => mainCam;
 
-        // Pause system
-        private static bool paused;
-        public static bool IsPaused => paused;
-        private static float wantedTimeScale;
-        public static void SetPause(bool pause)
+        // Pause system //TODO: remove static vars
+        private bool paused;
+        public bool IsPaused => paused;
+        private float wantedTimeScale;
+        public void SetPause(bool pause)
         {
+            if (paused == pause)
+                return;
             paused = pause;
-            if (pause) wantedTimeScale = Time.timeScale;
-            else Time.timeScale = wantedTimeScale;
+            
+            if (pause) {wantedTimeScale = Time.timeScale;}
+            Time.timeScale = paused ? 0f : wantedTimeScale;
+            
+            OnSetPause();
         }
-        
+        protected virtual void OnSetPause()
+        {
+            
+        }
+
         protected override void Awake()
         {
             base.Awake();
