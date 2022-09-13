@@ -20,6 +20,7 @@ namespace CoopHead
         [SerializeField] private float jumpBoostForce;
         [SerializeField] private Remember jumpPressedRemember;
         [SerializeField] private Remember groundedRemember;
+        [SerializeField] private float maxFallSpeed = 25f;
         
         [Header("Super Boost")]
         [SerializeField] private float superBoostForce;
@@ -60,7 +61,7 @@ namespace CoopHead
             jumpPressedRemember.DecreaseRemember(Time.deltaTime);
 
             // Remember when player is touching the ground
-            if (IsGrounded())
+            if (IsGrounded()) 
                 groundedRemember.Trigger();
             groundedRemember.DecreaseRemember(Time.deltaTime);
 
@@ -82,6 +83,10 @@ namespace CoopHead
             // Else, we give a slight air control to the player
             else
                 rb.velocity += new Vector2(horizontalInput * moveSpeed * superBoostAirControl * Time.fixedDeltaTime, 0);
+            
+            // Limit fall speed
+            if (rb.velocity.y <= -maxFallSpeed)
+                rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
         }
 
         private void OnDrawGizmosSelected()

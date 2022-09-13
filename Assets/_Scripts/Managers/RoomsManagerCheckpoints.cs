@@ -24,7 +24,6 @@ namespace CoopHead
             {
                 newCheckpoints.AddRange(rooms[i].Checkpoints);
             }
-
             checkpoints = newCheckpoints.ToArray();
         }
         

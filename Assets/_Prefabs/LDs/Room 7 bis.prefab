@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 384893102766344580, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
+      propertyPath: m_Name
+      value: Room 7 bis - Death Objects 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 384893102766344580, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1622477031025358524, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_Size.x
       value: 7.650237

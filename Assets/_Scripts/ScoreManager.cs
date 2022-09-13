@@ -24,6 +24,7 @@ namespace CoopHead
         private void Start()
         {
             gm = GameManager.instance;
+            gm.onGameEnd += SaveScore;
             Score = 0;
         }
         
@@ -40,9 +41,10 @@ namespace CoopHead
             if (scoreSaved)
                 return;
             scoreSaved = true;
-            
-            float highscore = PlayerPrefs.GetFloat("Highscore", 0);
+
+            float highscore = GetHighScore();
             if (highscore < score) PlayerPrefs.SetFloat("Highscore", score);
         }
+        public float GetHighScore() => PlayerPrefs.GetFloat("Highscore", 0);
     }
 }

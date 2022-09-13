@@ -75,9 +75,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 384893102766344580, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
+      propertyPath: m_Name
+      value: Room 3 - Death Objects 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 384893102766344580, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1622477031025358524, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_Size.x
-      value: 20.665985
+      value: 19.389107
       objectReference: {fileID: 0}
     - target: {fileID: 1622477031025358524, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_Size.y
@@ -85,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1622477031025358524, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_Offset.x
-      value: -2.2080536
+      value: -2.8464928
       objectReference: {fileID: 0}
     - target: {fileID: 1622477031025358524, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_Offset.y
@@ -4785,15 +4793,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6076614643854750029, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6076614643854750029, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6076614643854750029, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6076614643854750029, guid: 37ddb2dc8c0904f49a01b0ed76c8d200, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

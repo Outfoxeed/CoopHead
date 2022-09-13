@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using OutFoxeed.MonoBehaviourBase;
 using UnityEngine;
 
@@ -18,22 +19,9 @@ namespace CoopHead
 
         private void SetupRooms()
         {
-            rooms = FindObjectsOfType<Room>(true);
-            for (int i = 0; i < rooms.Length; i++)
-            {
-                for (int j = 0; j < rooms.Length - 1; j++)
-                {
-                    bool finished = true;
-                    if (String.CompareOrdinal(rooms[j].name, rooms[j + 1].name) >= 0)
-                    {
-                        (rooms[j], rooms[j + 1]) = (rooms[j + 1], rooms[j]);
-                        finished = false;
-                    }
-
-                    if (finished)
-                        break;
-                }
-            }
+            var temp = FindObjectsOfType<Room>(true).ToList();
+            temp.Sort((x, y) => string.Compare(x.name, y.name));
+            rooms = temp.ToArray();
         }
 
         public int GetRoomIndex(Room room)

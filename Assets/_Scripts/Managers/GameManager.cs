@@ -31,21 +31,24 @@ namespace CoopHead
                     return;
                 lastGameState = currentGameState;
                 currentGameState = value;
+
+                if (currentGameState == GameState.End)
+                    onGameEnd?.Invoke();
             }
         }
         private GameState lastGameState;
+        public System.Action onGameEnd;
 
         protected override void Awake()
         {
             base.Awake();
-            rewiredPlayer = ReInput.players.GetSystemPlayer();
             
             CurrentGameState = GameState.Game;
         }
 
         private void Start()
         {
-            rewiredPlayer ??= ReInput.players.GetSystemPlayer();
+            rewiredPlayer = ReInput.players.GetPlayer(0);
         }
 
         protected override void OnSetPause()
