@@ -23,10 +23,10 @@ namespace CoopHead
         private Transform strongBoostPrefab;
 
         private Transform strongBoostInstance;
+        private Transform strongBoostInstanceArrow;
         [SerializeField] private float strongBoostActivationRange;
         [SerializeField] private float strongBoostActivationDuration;
-        [Space(5)]
-        [SerializeField] private Cooldown strongBoostPlaceCooldown;
+        [Space(5)] [SerializeField] private Cooldown strongBoostPlaceCooldown;
         [SerializeField] private Cooldown strongBoostUseCooldown;
         private bool CanMoveStrongBoost => strongBoostPlaceCooldown.IsReady && strongBoostUseCooldown.IsReady;
         private IEnumerator strongBoostCoroutine;
@@ -59,32 +59,23 @@ namespace CoopHead
                 if (!strongBoostInstance && strongBoostPlaceCooldown.IsReady)
                 {
                     strongBoostPlaceCooldown.Reset();
-                    
+
                     Vector2 spawnPos = camera.ScreenToWorldPoint(Input.mousePosition);
                     strongBoostInstance = Instantiate(strongBoostPrefab, spawnPos, Quaternion.identity);
+                    strongBoostInstanceArrow = strongBoostInstance.GetChild(strongBoostInstance.childCount - 1);
                 }
 
-                // If existing, we check if the player is nearby or not
+                // If existing, we replace it
                 else
                 {
-                    // If player nearby activate the boost
-                    bool playerClose = Vector2.Distance(transform.position, strongBoostInstance.position) <
-                                       strongBoostActivationRange;
-                    if (strongBoostInstance.gameObject.activeSelf && playerClose && strongBoostUseCooldown.IsReady)
+                    if (TryActivatingStrongBoost())
                     {
-                        // Activation
-                        strongBoostUseCooldown.Reset();
-                        if (strongBoostCoroutine != null)
-                            return;
-                        strongBoostCoroutine = UseStrongBoost();
-                        StartCoroutine(strongBoostCoroutine);
+                        
                     }
-
-                    // Else, move the instance to the new location
-                    else if(CanMoveStrongBoost)
+                    else if (CanMoveStrongBoost)
                     {
                         strongBoostPlaceCooldown.Reset();
-                        
+
                         Vector2 newPos = camera.ScreenToWorldPoint(Input.mousePosition);
                         strongBoostInstance.position = newPos;
                         strongBoostInstance.rotation = Quaternion.identity;
@@ -92,6 +83,38 @@ namespace CoopHead
                     }
                 }
             }
+            else if (rewiredPlayer.GetButton("StrongBoost"))
+            {
+                TryActivatingStrongBoost();
+            }
+        }
+
+        private bool TryActivatingStrongBoost()
+        {
+            // If strong boost rady to use
+            if (strongBoostInstance && strongBoostUseCooldown.IsReady)
+            {
+                // If player nearby activate the boost
+                bool playerClose = Vector2.Distance(transform.position, strongBoostInstance.position) <
+                                   strongBoostActivationRange;
+                if (strongBoostInstance.gameObject.activeSelf && playerClose && strongBoostUseCooldown.IsReady)
+                {
+                    ActivateStrongBoost();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void ActivateStrongBoost()
+        {
+            // Activation
+            strongBoostUseCooldown.Reset();
+            if (strongBoostCoroutine != null)
+                return;
+            strongBoostCoroutine = UseStrongBoost();
+            StartCoroutine(strongBoostCoroutine);
         }
 
         private void CreateObject(Vector2 worldPos)
@@ -101,6 +124,7 @@ namespace CoopHead
 
         IEnumerator UseStrongBoost()
         {
+            strongBoostInstanceArrow.gameObject.SetActive(true);
             playerController.BlockMovement(true);
             Vector2 launchDir = Vector2.up;
             yield return null;
@@ -108,20 +132,24 @@ namespace CoopHead
             float timer = 0;
             while (timer < strongBoostActivationDuration)
             {
-                launchDir = ((Vector2)camera.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position).normalized;
+                launchDir = ((Vector2) camera.ScreenToWorldPoint(Input.mousePosition) - (Vector2) transform.position)
+                    .normalized;
+                strongBoostInstanceArrow.eulerAngles =
+                    new Vector3(0, 0, Mathf.Atan2(launchDir.y, launchDir.x) * Mathf.Rad2Deg + 90f);
                 if (rewiredPlayer.GetButtonDown("StrongBoost") || rewiredPlayer.GetButtonUp("StrongBoost"))
                 {
                     break;
                 }
-                
+
                 yield return null;
                 timer += Time.deltaTime;
             }
-            
+
             playerController.BlockMovement(false);
             playerController.StartSuperBoost(launchDir);
-            
+
             strongBoostInstance.gameObject.SetActive(false);
+            strongBoostInstanceArrow.gameObject.SetActive(false);
             strongBoostCoroutine = null;
         }
     }

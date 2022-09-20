@@ -165,10 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363b90a890ed3f24689501fbb69b9245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lapCountMax: 2
+  timeBeforeEndLapTp: 10
   lowBoostPrefab: {fileID: 3572919767972900485, guid: c7e7f0e2a5cca1144be1199c7e7c3a93, type: 3}
   lowBoostDestroyTime: 1.5
   lowBoostPlaceCooldown:
-    duration: 0.2
+    duration: 0.4
   strongBoostPrefab: {fileID: 3225445349225577360, guid: 3ccb1842ce8a29e43b3bb4ab51891ffb, type: 3}
   strongBoostActivationRange: 1.5
   strongBoostActivationDuration: 2
@@ -188,13 +190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47165503b970f91469b782554257ed06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   moveSpeed: 5
   jumpNormalForce: 5
-  jumpBoostForce: 4
+  jumpBoostForce: 5
   jumpPressedRemember:
     duration: 0.1
   groundedRemember:
     duration: 0.2
+  maxFallSpeed: 25
   superBoostForce: 10
   superBoostAirControl: 2
   groundCheck: {fileID: 926578897440914346}
@@ -218,7 +222,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 5125ebfeb3c57f548a51ab0ba32cd48a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &926578898904679207
 CapsuleCollider2D:
@@ -233,8 +237,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: -0.009733707}
+  m_Size: {x: 0.3929232, y: 0.90266293}
   m_Direction: 0
 --- !u!114 &926578898904679200
 MonoBehaviour:
@@ -249,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rewiredInputManager: {fileID: 489895014289861378, guid: de622e1d4d3bd9d4cb31b655b971d6ca, type: 3}
-  _playerId: 9999999
+  _playerId: 0
   _elements:
   - _name: Stick
     _elementType: 100

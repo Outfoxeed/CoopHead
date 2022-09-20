@@ -8,6 +8,7 @@ namespace CoopHead
     [RequireComponent(typeof(PlayerController))]
     public partial class Player : SingletonBase<Player>
     {
+        private Rigidbody2D rb;
         private PlayerController playerController;
         private int currentRoomIndex;
         public int CurrentRoomIndex => currentRoomIndex;
@@ -27,6 +28,7 @@ namespace CoopHead
             base.Awake();
             playerController = GetComponent<PlayerController>();
             lapCount = 0;
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -105,7 +107,7 @@ namespace CoopHead
             }
 
             // Tp player to checkpoint
-            transform.position = currentCheckpoint.transform.position;
+            rb.position = currentCheckpoint.transform.position;
         }
 
         #region Checkpoints

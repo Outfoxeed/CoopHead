@@ -13,13 +13,16 @@ namespace CoopHead
             get => score;
             private set
             {
-                score = Mathf.Clamp(value, 0, Mathf.Infinity);
+                if (value < score)
+                    return;
+                score = value;
                 OnScoreUpdated?.Invoke(score);
             }
         }
         public System.Action<float> OnScoreUpdated;
 
         private bool scoreSaved;
+        private string highscorePrefName = "Highscore";
 
         private void Start()
         {
@@ -43,8 +46,9 @@ namespace CoopHead
             scoreSaved = true;
 
             float highscore = GetHighScore();
-            if (highscore < score) PlayerPrefs.SetFloat("Highscore", score);
+            Debug.Log($"Get Highscore => {highscore}");
+            if (highscore < score) PlayerPrefs.SetFloat(highscorePrefName, score);
         }
-        public float GetHighScore() => PlayerPrefs.GetFloat("Highscore", 0);
+        public float GetHighScore() => PlayerPrefs.GetFloat(highscorePrefName, 0);
     }
 }

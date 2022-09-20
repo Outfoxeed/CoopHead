@@ -176,6 +176,8 @@ namespace CoopHead
             // Boosts
             ResetCloseBoosts();
             boostsClose = new Transform[5];
+
+            rb.velocity = Vector2.zero;
         }
     }
 }
