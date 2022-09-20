@@ -22,6 +22,7 @@ namespace CoopHead
         public System.Action<float> onLapEnd;
 
         private Checkpoint currentCheckpoint;
+        int deathCount;
 
         protected override void Awake()
         {
@@ -29,6 +30,7 @@ namespace CoopHead
             playerController = GetComponent<PlayerController>();
             lapCount = 0;
             rb = GetComponent<Rigidbody2D>();
+            deathCount = 0;
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -108,7 +110,11 @@ namespace CoopHead
 
             // Tp player to checkpoint
             rb.position = currentCheckpoint.transform.position;
+
+            deathCount++;
+            OnDeath?.Invoke(deathCount);
         }
+        public event System.Action<int> OnDeath; 
 
         #region Checkpoints
         private void OnCheckpointTouched(GameObject checkpointGo)
