@@ -18,10 +18,10 @@ namespace CoopHead.UI
         {
             gameObject.SetActive(true);
             var scoreManager = ScoreManager.instance;
-            scoreText.text = scoreManager.Score.ToString("F1");
-            highscoreText.text = scoreManager.GetHighScore().ToString("F1");
+            scoreText.text = scoreManager.ScoreFormatted();
+            highscoreText.text = scoreManager.BestScoreFormatted();
             
-            Debug.Log($"Score = {scoreManager.Score} and Highscore = {scoreManager.GetHighScore()}");
+            Debug.Log($"Score = {scoreManager.Score} and Highscore = {scoreManager.GetBestScore()}");
         }
     }
 }

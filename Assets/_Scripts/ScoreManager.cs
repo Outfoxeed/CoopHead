@@ -1,4 +1,5 @@
-﻿using OutFoxeed.MonoBehaviourBase;
+﻿using System;
+using OutFoxeed.MonoBehaviourBase;
 using UnityEngine;
 
 namespace CoopHead
@@ -22,7 +23,7 @@ namespace CoopHead
         public System.Action<float> OnScoreUpdated;
 
         private bool scoreSaved;
-        private string highscorePrefName = "Highscore";
+        private string bestScorePrefName = "Bestscore";
 
         private void Start()
         {
@@ -45,10 +46,19 @@ namespace CoopHead
                 return;
             scoreSaved = true;
 
-            float highscore = GetHighScore();
-            Debug.Log($"Get Highscore => {highscore}");
-            if (highscore < score) PlayerPrefs.SetFloat(highscorePrefName, score);
+            float bestScore = GetBestScore();
+            Debug.Log($"Get best score => {bestScore}");
+            if (bestScore > score) PlayerPrefs.SetFloat(bestScorePrefName, score);
         }
-        public float GetHighScore() => PlayerPrefs.GetFloat(highscorePrefName, 0);
+        public float GetBestScore() => PlayerPrefs.GetFloat(bestScorePrefName, 60*60-1);
+
+        private string FormatScore(long toFormat)
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(toFormat);
+            return $"{timeSpan.Minutes:D}:{timeSpan.Seconds:D2}";
+        }
+
+        public string BestScoreFormatted() => FormatScore((long) GetBestScore());
+        public string ScoreFormatted() => FormatScore((long)Score);
     }
 }

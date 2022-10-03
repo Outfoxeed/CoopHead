@@ -2,26 +2,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 namespace CoopHead.UI
 {
     public class ScoreDisplayer : MonoBehaviour
     {
-        [SerializeField] private TMP_Text text;
+        [FormerlySerializedAs("text")] [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TMP_Text bestScoreText;
 
+        private ScoreManager sm;
+        
         private void Start()
         {
             UpdateDisplay(0);
-            ScoreManager.instance.OnScoreUpdated += UpdateDisplay;
+            sm = ScoreManager.instance;
+            sm.OnScoreUpdated += UpdateDisplay;
         }
 
         private void UpdateDisplay(float newScore)
         {
-            if (!text)
+            if (!scoreText)
                 return;
-
-            TimeSpan timeSpan = TimeSpan.FromSeconds((long)newScore);
-            text.text = $"{timeSpan.Minutes:D}:{timeSpan.Seconds:D2}";
+            if(scoreText) scoreText.text = sm.ScoreFormatted();
+            if(bestScoreText) bestScoreText.text = sm.BestScoreFormatted();
         }
     }
 }
