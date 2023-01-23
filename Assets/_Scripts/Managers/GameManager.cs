@@ -1,4 +1,5 @@
-﻿using OutFoxeed.MonoBehaviourBase;
+﻿using System;
+using OutFoxeed.MonoBehaviourBase;
 using Rewired;
 using UnityEngine;
 
@@ -51,7 +52,16 @@ namespace CoopHead
             rewiredPlayer = ReInput.players.GetPlayer(0);
         }
 
-        protected override void OnSetPause()
+        private void Update()
+        {
+            if (rewiredPlayer is null)
+                return;
+
+            if (rewiredPlayer.GetButtonDown("Pause"))
+                TogglePause();
+        }
+
+        protected override void OnSetPaused()
         {
             CurrentGameState = IsPaused ? GameState.Paused : lastGameState;
         }

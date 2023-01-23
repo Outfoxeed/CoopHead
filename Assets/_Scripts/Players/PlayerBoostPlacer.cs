@@ -17,7 +17,7 @@ namespace CoopHead
         [FormerlySerializedAs("boostDestroyTime"), SerializeField]
         private float lowBoostDestroyTime;
 
-        [SerializeField] private Cooldown lowBoostPlaceCooldown;
+        [SerializeField] private ManualCooldown lowBoostPlaceCooldown;
 
         [Header("Strong Boost"), SerializeField]
         private Transform strongBoostPrefab;
@@ -26,9 +26,9 @@ namespace CoopHead
         private Transform strongBoostInstanceArrow;
         [SerializeField] private float strongBoostActivationRange;
         [SerializeField] private float strongBoostActivationDuration;
-        [Space(5)] [SerializeField] private Cooldown strongBoostPlaceCooldown;
-        [SerializeField] private Cooldown strongBoostUseCooldown;
-        private bool CanMoveStrongBoost => strongBoostPlaceCooldown.IsReady && strongBoostUseCooldown.IsReady;
+        [Space(5)] [SerializeField] private ManualCooldown strongBoostPlaceCooldown;
+        [SerializeField] private ManualCooldown strongBoostUseCooldown;
+        private bool CanMoveStrongBoost => strongBoostPlaceCooldown.IsReady() && strongBoostUseCooldown.IsReady();
         private IEnumerator strongBoostCoroutine;
 
         private void Start()
@@ -46,7 +46,7 @@ namespace CoopHead
 
             if (rewiredPlayer.GetButtonDown("NormalBoost"))
             {
-                if (lowBoostPlaceCooldown.IsReady)
+                if (lowBoostPlaceCooldown.IsReady())
                 {
                     Vector2 worldPos = camera.ScreenToWorldPoint(Input.mousePosition);
                     CreateObject(worldPos);
@@ -56,7 +56,7 @@ namespace CoopHead
             else if (rewiredPlayer.GetButtonDown("StrongBoost"))
             {
                 // If no instance existing, we instantiate the prefab
-                if (!strongBoostInstance && strongBoostPlaceCooldown.IsReady)
+                if (!strongBoostInstance && strongBoostPlaceCooldown.IsReady())
                 {
                     strongBoostPlaceCooldown.Reset();
 
@@ -92,12 +92,12 @@ namespace CoopHead
         private bool TryActivatingStrongBoost()
         {
             // If strong boost rady to use
-            if (strongBoostInstance && strongBoostUseCooldown.IsReady)
+            if (strongBoostInstance && strongBoostUseCooldown.IsReady())
             {
                 // If player nearby activate the boost
                 bool playerClose = Vector2.Distance(transform.position, strongBoostInstance.position) <
                                    strongBoostActivationRange;
-                if (strongBoostInstance.gameObject.activeSelf && playerClose && strongBoostUseCooldown.IsReady)
+                if (strongBoostInstance.gameObject.activeSelf && playerClose && strongBoostUseCooldown.IsReady())
                 {
                     ActivateStrongBoost();
                     return true;

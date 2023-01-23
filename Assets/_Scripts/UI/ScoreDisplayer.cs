@@ -15,9 +15,9 @@ namespace CoopHead.UI
         
         private void Start()
         {
-            UpdateDisplay(0);
             sm = ScoreManager.instance;
             sm.OnScoreUpdated += UpdateDisplay;
+            UpdateDisplay(0);
         }
 
         private void UpdateDisplay(float newScore)

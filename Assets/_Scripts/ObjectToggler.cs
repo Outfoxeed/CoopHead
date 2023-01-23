@@ -9,12 +9,12 @@ namespace CoopHead
         [SerializeField] private int nextGroupToToggle;
         [SerializeField] private List2D<GameObject> groups;
 
-        [Header("IDK"), SerializeField] private Cooldown toggleCooldown;
+        [Header("IDK"), SerializeField] private ManualCooldown toggleCooldown;
 
         private void Start()
         {
             ToggleGroups();
-            toggleCooldown = new Cooldown(toggleCooldown.Duration, () =>
+            toggleCooldown = new ManualCooldown(toggleCooldown.Duration, () =>
             {
                 ToggleGroups();
                 toggleCooldown.Reset();
