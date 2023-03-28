@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 926578897145126766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.57574, y: 0.57574, z: 0.57574}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1.4861}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 926578898904679204}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4ae49494a73ff584099f601cb159abba, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6858813d0f1f28b4cafee677b3e2e49b, type: 3}
+  m_Color: {r: 0.9411765, g: 0.85882354, b: 0.21568628, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926578897440914347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.41, z: 0}
+  m_LocalPosition: {x: 0, y: -0.252, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 1725545334}
   - component: {fileID: 926578898904679201}
   - component: {fileID: 926578898904679194}
-  - component: {fileID: 926578898904679207}
+  - component: {fileID: 4874470596342421778}
   - component: {fileID: 926578898904679200}
   m_Layer: 0
   m_Name: Player
@@ -224,8 +224,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &926578898904679207
-CapsuleCollider2D:
+--- !u!58 &4874470596342421778
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -233,13 +233,13 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 926578898904679195}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 5125ebfeb3c57f548a51ab0ba32cd48a, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.009733707}
-  m_Size: {x: 0.3929232, y: 0.90266293}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2554346
 --- !u!114 &926578898904679200
 MonoBehaviour:
   m_ObjectHideFlags: 0

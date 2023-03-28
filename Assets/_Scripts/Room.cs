@@ -1,7 +1,9 @@
-﻿using System;
-using OutFoxeed.Attributes;
+﻿using OutFoxeed.Attributes;
 using UnityEngine;
+#if UNITY_EDITOR
+using System;
 using UnityEngine.Tilemaps;
+#endif
 
 namespace CoopHead
 {
@@ -24,6 +26,7 @@ namespace CoopHead
             rect = new Rect((Vector2) transform.position + roomCollider.offset, roomCollider.size);
         }
 
+#if UNITY_EDITOR
         public void InspectorSetup()
         {
             SetupRoomCollider();
@@ -49,10 +52,11 @@ namespace CoopHead
 
         private void TryRenameRoomComponent<T>(T tilemap) where T : Component
         {
-            if (tilemap.name.Contains(gameObject.name))
-                return;
             string[] splits = tilemap.name.Split(" - ");
-            tilemap.name = $"{gameObject.name} - {splits[^1]}";
+            string wantedName = $"{gameObject.name} - {splits[^1]}"; 
+            if (tilemap.name == wantedName)
+                return;
+            tilemap.name = wantedName;
         }
 
         private void SetupCheckpoints()
@@ -80,5 +84,6 @@ namespace CoopHead
                 TryRenameRoomComponent<Checkpoint>(checkpoints[i]);
             }
         }
+#endif
     }
 }
