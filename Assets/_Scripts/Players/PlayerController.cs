@@ -1,6 +1,7 @@
 using System;
 using OutFoxeed.UsefulStructs;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CoopHead
 {
@@ -21,6 +22,7 @@ namespace CoopHead
         [SerializeField] private Remember jumpPressedRemember;
         [SerializeField] private Remember groundedRemember;
         [SerializeField] private float maxFallSpeed = 25f;
+        [SerializeField] private UnityEvent jumpResponse;
         
         [Header("Super Boost")]
         [SerializeField] private float superBoostForce;
@@ -158,6 +160,8 @@ namespace CoopHead
 
             jumpPressedRemember.Reset();
             groundedRemember.Reset();
+            
+            jumpResponse?.Invoke();
         }
 
         bool IsGrounded()

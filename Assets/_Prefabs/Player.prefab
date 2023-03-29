@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &264508907
+--- !u!1 &982898405
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,21 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 264508908}
+  - component: {fileID: 982898406}
+  - component: {fileID: 982898407}
   m_Layer: 3
-  m_Name: PointLight
+  m_Name: JumpAnimationSequence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &264508908
+--- !u!4 &982898406
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264508907}
+  m_GameObject: {fileID: 982898405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,6 +32,69 @@ Transform:
   m_Father: {fileID: 926578897145126761}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &982898407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982898405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10d422b52559da41aa9676770a8fc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSteps:
+  - rid: 2190895241895346176
+  updateType: 0
+  autoplayMode: 2
+  playType: 0
+  loopType: 0
+  timeScaleIndependent: 0
+  startPaused: 0
+  autoKill: 1
+  playbackSpeed: 1
+  loops: 0
+  onStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onProgressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  progress: -1
+  references:
+    version: 2
+    RefIds:
+    - rid: 2190895241895346176
+      type: {class: TweenStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        delay: 0
+        flowType: 0
+        target: {fileID: 926578897145126766}
+        duration: 0.2
+        actions:
+        - rid: 2190895241895346177
+        loopCount: 0
+        loopType: 0
+    - rid: 2190895241895346177
+      type: {class: PunchScale, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        direction: 0
+        ease:
+          ease: 13
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        isRelative: 0
+        punchMagnitude: {x: 0, y: -0.7, z: 0}
+        vibrato: 10
+        elasticity: 1
 --- !u!1 &926578897145126766
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +106,8 @@ GameObject:
   - component: {fileID: 926578897145126761}
   - component: {fileID: 926578897145126760}
   - component: {fileID: 2077190694}
+  - component: {fileID: 2077190695}
+  - component: {fileID: 2077190696}
   m_Layer: 3
   m_Name: GFX
   m_TagString: Untagged
@@ -61,7 +127,7 @@ Transform:
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 264508908}
+  - {fileID: 982898406}
   m_Father: {fileID: 926578898904679204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,8 +169,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1810494739
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6858813d0f1f28b4cafee677b3e2e49b, type: 3}
   m_Color: {r: 0.9411765, g: 0.85882354, b: 0.21568628, a: 1}
@@ -133,11 +199,11 @@ MonoBehaviour:
   m_LightType: 2
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.94117653, g: 0.8588236, b: 0.21568629, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 05b1355600000000
+  m_ApplyToSortingLayers: 13f5e96b
   m_LightCookieSprite: {fileID: 21300000, guid: 6858813d0f1f28b4cafee677b3e2e49b, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -241,6 +307,35 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &2077190695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926578897145126766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e576e8e2c746729292050414f1d877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2077190696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926578897145126766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4faaf368d2f2c4889f53b9fbe13247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 926578898904679194}
+  _light2D: {fileID: 2077190694}
+  _speedMax: 10
+  _lightIntensityMax: 5
+  _lightIntensityLerpEase: 5
 --- !u!1 &926578897440914347
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +383,7 @@ GameObject:
   - component: {fileID: 926578898904679200}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,6 +451,47 @@ MonoBehaviour:
   groundedRemember:
     duration: 0.2
   maxFallSpeed: 25
+  jumpResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 982898407}
+        m_TargetAssemblyTypeName: BrunoMikoski.AnimationSequencer.AnimationSequence,
+          BrunoMikoski.AnimationSequencer
+        m_MethodName: ResetComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2077190695}
+        m_TargetAssemblyTypeName: CoopHead.PlayerGfx, Assembly-CSharp
+        m_MethodName: ResetTransform
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 982898407}
+        m_TargetAssemblyTypeName: BrunoMikoski.AnimationSequencer.AnimationSequence,
+          BrunoMikoski.AnimationSequencer
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   superBoostForce: 10
   superBoostAirControl: 2
   groundCheck: {fileID: 926578897440914346}
