@@ -2,6 +2,7 @@
 using OutFoxeed.MonoBehaviourBase;
 using Rewired;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CoopHead
 {
@@ -64,6 +65,11 @@ namespace CoopHead
         protected override void OnSetPaused()
         {
             CurrentGameState = IsPaused ? GameState.Paused : lastGameState;
+        }
+
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
