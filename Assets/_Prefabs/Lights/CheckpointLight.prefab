@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8488625555683638366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 72595985106500524, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_Name
+      value: CheckpointLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 72595985106500527, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.41960788
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.96470594
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_BlendStyleIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.794
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438266643577106619, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 4.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cddedcc08cda7ae45aceb2e6adafc15e, type: 3}

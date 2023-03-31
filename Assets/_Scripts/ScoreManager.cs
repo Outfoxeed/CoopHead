@@ -28,7 +28,7 @@ namespace CoopHead
         private void Start()
         {
             gm = GameManager.instance;
-            gm.onGameEnd += SaveScore;
+            gm.onGameEnd += SaveBestScore;
             Score = 0;
         }
         
@@ -40,17 +40,20 @@ namespace CoopHead
             Score += Time.deltaTime;
         }
 
-        public void SaveScore()
+        public void SaveBestScore()
         {
-            if (scoreSaved)
+             if (scoreSaved)
                 return;
-            scoreSaved = true;
+             scoreSaved = true;
 
-            float bestScore = GetBestScore();
-            Debug.Log($"Get best score => {bestScore}");
-            if (bestScore > score) PlayerPrefs.SetFloat(bestScorePrefName, score);
+             float bestScore = GetBestScore();
+             Debug.Log($"Get best score => {bestScore}");
+             if (bestScore > score) PlayerPrefs.SetFloat(bestScorePrefName, score);
         }
-        public float GetBestScore() => PlayerPrefs.GetFloat(bestScorePrefName, 60*60-1);
+        public float GetBestScore()
+        {
+            return PlayerPrefs.GetFloat(bestScorePrefName, 60 * 60 - 1);
+        }
 
         private string FormatScore(long toFormat)
         {

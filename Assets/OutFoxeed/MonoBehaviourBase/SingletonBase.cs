@@ -19,12 +19,14 @@ namespace OutFoxeed.MonoBehaviourBase
 
         protected virtual void Awake()
         {
-            if (_instance == null)
-                _instance = this as T;
-            else
+            if (_instance != null && _instance != this)
             {
                 Destroy(this);
                 return;
+            }
+            else
+            {
+                _instance = this as T;
             }
         }
     }

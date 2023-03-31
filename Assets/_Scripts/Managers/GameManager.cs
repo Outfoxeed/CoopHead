@@ -12,6 +12,8 @@ namespace CoopHead
         [SerializeField] private LayerMask groundLayerMask;
         public LayerMask GroundLayerMask => groundLayerMask;
 
+        [Space(10)] [SerializeField] private GameObject _pauseUI;
+
         // Rewired
         private Rewired.Player rewiredPlayer;
         public Rewired.Player RewiredPlayer => rewiredPlayer;
@@ -65,6 +67,7 @@ namespace CoopHead
         protected override void OnSetPaused()
         {
             CurrentGameState = IsPaused ? GameState.Paused : lastGameState;
+            _pauseUI.SetActive(IsPaused);
         }
 
         public void RestartGame()

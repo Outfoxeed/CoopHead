@@ -46,8 +46,9 @@ namespace CoopHead.UI
         {
             gameObject.SetActive(true);
             var scoreManager = ScoreManager.instance;
+            scoreManager.SaveBestScore();
             scoreText.text = scoreManager.ScoreFormatted();
-            highscoreText.text = scoreManager.BestScoreFormatted();
+            highscoreText.text = string.Concat(scoreManager.GetBestScore().ToString("F1"), " seconds");
             
             _delay = 0f;
             WaitForDuration(_delayDuration, ShowRestartMessageAndWaitForInput);
